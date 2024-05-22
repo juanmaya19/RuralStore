@@ -1,0 +1,82 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <!-- Imagen del producto -->
+        <ImageView
+            android:id="@+id/imagenImageView"
+            android:layout_width="166dp"
+            android:layout_height="158dp"
+            android:layout_gravity="start"
+            android:scaleType="centerCrop" />
+
+        <!-- Contenedor para la descripción -->
+        <LinearLayout
+            android:layout_width="215dp"
+            android:layout_height="158dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+            <!-- Nombre del producto -->
+            <TextView
+                android:id="@+id/nombreTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <!-- Cantidad -->
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cantidad"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cantidadTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cantidad" />
+
+            <!-- Precio -->
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:text="Precio del Producto"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/precioTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Precio" />
+
+            <!-- Ubicación -->
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ubicación"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ubicacionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Ubicación" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,218 @@
+<html>
+<head>
+<title>PlagasActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PlagasActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">saborysteps</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">LayoutInflater</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewGroup</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ArrayAdapter</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ListView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">SearchView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">TextView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">NonNull</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">LinearLayoutManager</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">RecyclerView</span><span class="s2">;</span>
+
+
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">PlagasActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">categorias</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">PlagaEnfermedad</span><span class="s2">&gt; </span><span class="s1">plagaEnfermedadList</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">ArrayAdapter</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">categoriasAdapter</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">PlagaEnfermedadAdapter plagaEnfermedadAdapter</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_plagas</span><span class="s2">);</span>
+
+        <span class="s3">// Inicializar listas de datos</span>
+        <span class="s1">categorias </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">plagaEnfermedadList </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+
+        <span class="s3">// Agregar datos de ejemplo (reemplaza con tus propios datos)</span>
+        <span class="s1">categorias</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s4">&quot;Plagas de cultivos&quot;</span><span class="s2">);</span>
+        <span class="s1">categorias</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s4">&quot;Enfermedades en animales&quot;</span><span class="s2">);</span>
+
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Pulgón&quot;</span><span class="s2">, </span><span class="s4">&quot;Pequeños insectos chupadores que se alimentan de la savia de las plantas, causando deformaciones y debilitamiento&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Oruga cortadora&quot;</span><span class="s2">, </span><span class="s4">&quot;Orugas que cortan las hojas y tallos de las plantas, causando daños significativos en cultivos&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Ácaros&quot;</span><span class="s2">, </span><span class="s4">&quot;Pequeños artrópodos que se alimentan de las células de las plantas, provocando amarillamiento y deformación en las hojas&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Mosca blanca&quot;</span><span class="s2">, </span><span class="s4">&quot;Insectos voladores que se alimentan de la savia de las plantas y transmiten enfermedades virales&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Gusano cogollero&quot;</span><span class="s2">, </span><span class="s4">&quot;Larvas que se alimentan de las hojas y brotes jóvenes de las plantas, afectando su crecimiento y desarrollo&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Trips&quot;</span><span class="s2">, </span><span class="s4">&quot;Insectos diminutos que perforan las células de las plantas para alimentarse, causando manchas y deformidades en las hojas&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Escarabajo de la patata&quot;</span><span class="s2">, </span><span class="s4">&quot;Insecto que se alimenta de las hojas y tubérculos de las plantas de patata, ocasionando daños graves en los cultivos&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Hormigas cortadoras&quot;</span><span class="s2">, </span><span class="s4">&quot;Hormigas que cortan trozos de hojas para llevar a sus hormigueros, afectando la salud de las plantas&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Mildiu&quot;</span><span class="s2">, </span><span class="s4">&quot;Enfermedad fúngica que provoca manchas blancas en las hojas y afecta el crecimiento de las plantas&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Royas&quot;</span><span class="s2">, </span><span class="s4">&quot;Enfermedades fúngicas que causan manchas anaranjadas o amarillas en las hojas, debilitando la planta&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Pulgón negro&quot;</span><span class="s2">, </span><span class="s4">&quot;Variante del pulgón común que afecta especialmente a plantas como rosales, provocando deformaciones en brotes y hojas&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Tuta absoluta&quot;</span><span class="s2">, </span><span class="s4">&quot;Polilla que ataca tomates y otros cultivos de la familia de las solanáceas, causando daños en frutos y hojas&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Cochinilla&quot;</span><span class="s2">, </span><span class="s4">&quot;Insecto que se adhiere a tallos y hojas, succionando la savia y dejando una secreción pegajosa que favorece el desarrollo de hongos&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga1</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s1">plagaEnfermedadList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s4">&quot;Moscas de la fruta&quot;</span><span class="s2">, </span><span class="s4">&quot;Insectos que ponen huevos en frutas maduras, provocando la descomposición de las mismas y pérdidas en la producción&quot;</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">plaga2</span><span class="s2">, </span><span class="s4">&quot;www.koppert.com.co/plagas-en-plantas/pulgones/&quot;</span><span class="s2">));</span>
+        <span class="s3">// Agrega más datos según sea necesario</span>
+
+        <span class="s3">// Configurar el adaptador para la lista de categorías</span>
+        <span class="s1">ListView categoryListView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">categoryList</span><span class="s2">);</span>
+        <span class="s1">categoriasAdapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayAdapter</span><span class="s2">&lt;&gt;(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">android</span><span class="s2">.</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">simple_list_item_1</span><span class="s2">, </span><span class="s1">categorias</span><span class="s2">);</span>
+        <span class="s1">categoryListView</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">categoriasAdapter</span><span class="s2">);</span>
+
+        <span class="s3">// Configurar el adaptador para las tarjetas informativas</span>
+        <span class="s1">RecyclerView cardsRecyclerView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">cardsRecyclerView</span><span class="s2">);</span>
+        <span class="s1">plagaEnfermedadAdapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">PlagaEnfermedadAdapter</span><span class="s2">(</span><span class="s1">plagaEnfermedadList</span><span class="s2">);</span>
+        <span class="s1">cardsRecyclerView</span><span class="s2">.</span><span class="s1">setLayoutManager</span><span class="s2">(</span><span class="s0">new </span><span class="s1">LinearLayoutManager</span><span class="s2">(</span><span class="s0">this</span><span class="s2">));</span>
+        <span class="s1">cardsRecyclerView</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">plagaEnfermedadAdapter</span><span class="s2">);</span>
+
+        <span class="s3">// Configurar la barra de búsqueda</span>
+        <span class="s1">SearchView searchView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">searchView</span><span class="s2">);</span>
+        <span class="s1">searchView</span><span class="s2">.</span><span class="s1">setOnQueryTextListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">SearchView</span><span class="s2">.</span><span class="s1">OnQueryTextListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public boolean </span><span class="s1">onQueryTextSubmit</span><span class="s2">(</span><span class="s1">String query</span><span class="s2">) {</span>
+                <span class="s3">// Lógica para buscar y filtrar datos según la búsqueda</span>
+                <span class="s1">buscarPlagasEnfermedades</span><span class="s2">(</span><span class="s1">query</span><span class="s2">);</span>
+                <span class="s0">return true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">public boolean </span><span class="s1">onQueryTextChange</span><span class="s2">(</span><span class="s1">String newText</span><span class="s2">) {</span>
+                <span class="s3">// Lógica para buscar y filtrar datos en tiempo real mientras se escribe</span>
+                <span class="s1">buscarPlagasEnfermedades</span><span class="s2">(</span><span class="s1">newText</span><span class="s2">);</span>
+                <span class="s0">return true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Método para buscar y filtrar plagas/enfermedades según el término de búsqueda</span>
+    <span class="s0">private void </span><span class="s1">buscarPlagasEnfermedades</span><span class="s2">(</span><span class="s1">String query</span><span class="s2">) {</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">PlagaEnfermedad</span><span class="s2">&gt; </span><span class="s1">resultado </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">PlagaEnfermedad pe </span><span class="s2">: </span><span class="s1">plagaEnfermedadList</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">pe</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">().</span><span class="s1">toLowerCase</span><span class="s2">().</span><span class="s1">contains</span><span class="s2">(</span><span class="s1">query</span><span class="s2">.</span><span class="s1">toLowerCase</span><span class="s2">())) {</span>
+                <span class="s1">resultado</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">pe</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s1">plagaEnfermedadAdapter</span><span class="s2">.</span><span class="s1">filtrarLista</span><span class="s2">(</span><span class="s1">resultado</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Clase modelo para representar una plaga/enfermedad</span>
+    <span class="s0">private static class </span><span class="s1">PlagaEnfermedad </span><span class="s2">{</span>
+        <span class="s0">private </span><span class="s1">String nombre</span><span class="s2">;</span>
+        <span class="s0">private </span><span class="s1">String descripcion</span><span class="s2">;</span>
+        <span class="s0">private int </span><span class="s1">imagen</span><span class="s2">;</span>
+        <span class="s0">private </span><span class="s1">String enlace</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">PlagaEnfermedad</span><span class="s2">(</span><span class="s1">String nombre</span><span class="s2">, </span><span class="s1">String descripcion</span><span class="s2">, </span><span class="s0">int </span><span class="s1">imagen</span><span class="s2">, </span><span class="s1">String enlace</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">nombre </span><span class="s2">= </span><span class="s1">nombre</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">descripcion </span><span class="s2">= </span><span class="s1">descripcion</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">imagen </span><span class="s2">= </span><span class="s1">imagen</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">enlace </span><span class="s2">= </span><span class="s1">enlace</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public </span><span class="s1">String getNombre</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">nombre</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public </span><span class="s1">String getDescripcion</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">descripcion</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public int </span><span class="s1">getImagen</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">imagen</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s0">public </span><span class="s1">String getEnlace</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">enlace</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Adaptador personalizado para las tarjetas informativas</span>
+    <span class="s0">private static class </span><span class="s1">PlagaEnfermedadAdapter </span><span class="s0">extends </span><span class="s1">RecyclerView</span><span class="s2">.</span><span class="s1">Adapter</span><span class="s2">&lt;</span><span class="s1">PlagaEnfermedadAdapter</span><span class="s2">.</span><span class="s1">ViewHolder</span><span class="s2">&gt; {</span>
+        <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">PlagaEnfermedad</span><span class="s2">&gt; </span><span class="s1">listaPlagaEnfermedad</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">PlagaEnfermedadAdapter</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">PlagaEnfermedad</span><span class="s2">&gt; </span><span class="s1">listaPlagaEnfermedad</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">listaPlagaEnfermedad </span><span class="s2">= </span><span class="s1">listaPlagaEnfermedad</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public static class </span><span class="s1">ViewHolder </span><span class="s0">extends </span><span class="s1">RecyclerView</span><span class="s2">.</span><span class="s1">ViewHolder </span><span class="s2">{</span>
+            <span class="s0">private final </span><span class="s1">TextView nombreTextView</span><span class="s2">;</span>
+            <span class="s0">private final </span><span class="s1">TextView descripcionTextView</span><span class="s2">;</span>
+            <span class="s0">private final </span><span class="s1">ImageView imagenImageView</span><span class="s2">;</span>
+
+            <span class="s0">public </span><span class="s1">ViewHolder</span><span class="s2">(</span><span class="s1">View view</span><span class="s2">) {</span>
+                <span class="s0">super</span><span class="s2">(</span><span class="s1">view</span><span class="s2">);</span>
+                <span class="s1">nombreTextView </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">nombrePlaga</span><span class="s2">);</span>
+                <span class="s1">descripcionTextView </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">descripcionPlaga</span><span class="s2">);</span>
+                <span class="s1">imagenImageView </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">imagenPlaga</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public </span><span class="s1">TextView getNombreTextView</span><span class="s2">() {</span>
+                <span class="s0">return </span><span class="s1">nombreTextView</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public </span><span class="s1">TextView getDescripcionTextView</span><span class="s2">() {</span>
+                <span class="s0">return </span><span class="s1">descripcionTextView</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public </span><span class="s1">ImageView getImagenImageView</span><span class="s2">() {</span>
+                <span class="s0">return </span><span class="s1">imagenImageView</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@NonNull</span>
+        <span class="s1">@Override</span>
+        <span class="s0">public </span><span class="s1">ViewHolder onCreateViewHolder</span><span class="s2">(</span><span class="s1">@NonNull ViewGroup parent</span><span class="s2">, </span><span class="s0">int </span><span class="s1">viewType</span><span class="s2">) {</span>
+            <span class="s1">View view </span><span class="s2">= </span><span class="s1">LayoutInflater</span><span class="s2">.</span><span class="s1">from</span><span class="s2">(</span><span class="s1">parent</span><span class="s2">.</span><span class="s1">getContext</span><span class="s2">())</span>
+                    <span class="s2">.</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">item_plaga_enfermedad</span><span class="s2">, </span><span class="s1">parent</span><span class="s2">, </span><span class="s0">false</span><span class="s2">);</span>
+            <span class="s0">return new </span><span class="s1">ViewHolder</span><span class="s2">(</span><span class="s1">view</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Override</span>
+        <span class="s0">public void </span><span class="s1">onBindViewHolder</span><span class="s2">(</span><span class="s1">@NonNull ViewHolder holder</span><span class="s2">, </span><span class="s0">int </span><span class="s1">position</span><span class="s2">) {</span>
+            <span class="s1">PlagaEnfermedad plagaEnfermedad </span><span class="s2">= </span><span class="s1">listaPlagaEnfermedad</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">position</span><span class="s2">);</span>
+            <span class="s1">holder</span><span class="s2">.</span><span class="s1">getNombreTextView</span><span class="s2">().</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">plagaEnfermedad</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">());</span>
+            <span class="s1">holder</span><span class="s2">.</span><span class="s1">getDescripcionTextView</span><span class="s2">().</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">plagaEnfermedad</span><span class="s2">.</span><span class="s1">getDescripcion</span><span class="s2">());</span>
+            <span class="s1">holder</span><span class="s2">.</span><span class="s1">getImagenImageView</span><span class="s2">().</span><span class="s1">setImageResource</span><span class="s2">(</span><span class="s1">plagaEnfermedad</span><span class="s2">.</span><span class="s1">getImagen</span><span class="s2">());</span>
+
+            <span class="s3">// Manejar clics en las tarjetas (opcional)</span>
+            <span class="s1">holder</span><span class="s2">.</span><span class="s1">itemView</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s1">v -&gt; </span><span class="s2">{</span>
+                <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s1">v</span><span class="s2">.</span><span class="s1">getContext</span><span class="s2">(), </span><span class="s4">&quot;Has seleccionado: &quot; </span><span class="s2">+ </span><span class="s1">plagaEnfermedad</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">(), </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+                <span class="s3">// Aquí puedes agregar la lógica para mostrar más detalles de la plaga/enfermedad seleccionada</span>
+            <span class="s2">});</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Override</span>
+        <span class="s0">public int </span><span class="s1">getItemCount</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">listaPlagaEnfermedad</span><span class="s2">.</span><span class="s1">size</span><span class="s2">();</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Método para filtrar la lista según el término de búsqueda</span>
+        <span class="s0">public void </span><span class="s1">filtrarLista</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">PlagaEnfermedad</span><span class="s2">&gt; </span><span class="s1">listaFiltrada</span><span class="s2">) {</span>
+            <span class="s1">listaPlagaEnfermedad </span><span class="s2">= </span><span class="s1">listaFiltrada</span><span class="s2">;</span>
+            <span class="s1">notifyDataSetChanged</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>

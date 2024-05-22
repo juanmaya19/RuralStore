@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>SiembraActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SiembraActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">saborysteps</span><span class="s2">;</span>
+
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">LinearLayoutManager</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">RecyclerView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">SiembraActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">RecyclerView plantingTechniquesRecyclerView</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">RecyclerView animalCareRecyclerView</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">TechniqueAdapter plantingAdapter</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">TechniqueAdapter animalCareAdapter</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_siembra</span><span class="s2">);</span>
+
+        <span class="s1">plantingTechniquesRecyclerView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">plantingTechniquesRecyclerView</span><span class="s2">);</span>
+        <span class="s1">animalCareRecyclerView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">animalCareRecyclerView</span><span class="s2">);</span>
+
+        <span class="s3">// Set up RecyclerViews</span>
+        <span class="s1">plantingTechniquesRecyclerView</span><span class="s2">.</span><span class="s1">setLayoutManager</span><span class="s2">(</span><span class="s0">new </span><span class="s1">LinearLayoutManager</span><span class="s2">(</span><span class="s0">this</span><span class="s2">));</span>
+        <span class="s1">animalCareRecyclerView</span><span class="s2">.</span><span class="s1">setLayoutManager</span><span class="s2">(</span><span class="s0">new </span><span class="s1">LinearLayoutManager</span><span class="s2">(</span><span class="s0">this</span><span class="s2">));</span>
+
+        <span class="s3">// Sample data for testing</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Technique</span><span class="s2">&gt; </span><span class="s1">plantingTechniques </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">plantingTechniques</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Technique</span><span class="s2">(</span><span class="s4">&quot;Técnica de Siembra Directa&quot;</span><span class="s2">, </span><span class="s4">&quot;Descripción de la técnica de siembra directa.&quot;</span><span class="s2">, </span><span class="s4">&quot;https://www.reddearboles.org/noticias/nwarticle/699/3/que-siembra-y-cuales-su-importancia&quot;</span><span class="s2">));</span>
+        <span class="s1">plantingTechniques</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Technique</span><span class="s2">(</span><span class="s4">&quot;Técnica de Siembra en Línea&quot;</span><span class="s2">, </span><span class="s4">&quot;Descripción de la técnica de siembra en línea.&quot;</span><span class="s2">, </span><span class="s4">&quot;https://www.reddearboles.org/noticias/nwarticle/699/3/que-siembra-y-cuales-su-importancia&quot;</span><span class="s2">));</span>
+
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Technique</span><span class="s2">&gt; </span><span class="s1">animalCareTechniques </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">animalCareTechniques</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Technique</span><span class="s2">(</span><span class="s4">&quot;Cuidado de Vacas&quot;</span><span class="s2">, </span><span class="s4">&quot;Descripción del cuidado de vacas.&quot;</span><span class="s2">, </span><span class="s4">&quot;https://www.reddearboles.org/noticias/nwarticle/699/3/que-siembra-y-cuales-su-importancia&quot;</span><span class="s2">));</span>
+        <span class="s1">animalCareTechniques</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Technique</span><span class="s2">(</span><span class="s4">&quot;Cuidado de Gallinas&quot;</span><span class="s2">, </span><span class="s4">&quot;Descripción del cuidado de gallinas.&quot;</span><span class="s2">, </span><span class="s4">&quot;https://www.reddearboles.org/noticias/nwarticle/699/3/que-siembra-y-cuales-su-importancia&quot;</span><span class="s2">));</span>
+
+        <span class="s3">// Set adapters</span>
+        <span class="s1">plantingAdapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TechniqueAdapter</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">plantingTechniques</span><span class="s2">);</span>
+        <span class="s1">animalCareAdapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TechniqueAdapter</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">animalCareTechniques</span><span class="s2">);</span>
+
+        <span class="s1">plantingTechniquesRecyclerView</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">plantingAdapter</span><span class="s2">);</span>
+        <span class="s1">animalCareRecyclerView</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">animalCareAdapter</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>PostActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PostActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">saborysteps</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">EditText</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AlertDialog</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">LinearLayoutManager</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">RecyclerView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">PostActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s0">implements </span><span class="s1">CommentAdapter</span><span class="s2">.</span><span class="s1">OnReplyClickListener </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">RecyclerView recyclerViewComments</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">CommentAdapter commentAdapter</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Comment</span><span class="s2">&gt; </span><span class="s1">commentList</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">EditText editTextComment</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Button buttonPostComment</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_post</span><span class="s2">);</span>
+
+        <span class="s1">recyclerViewComments </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">recyclerViewComments</span><span class="s2">);</span>
+        <span class="s1">editTextComment </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">editTextComment</span><span class="s2">);</span>
+        <span class="s1">buttonPostComment </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">buttonPostComment</span><span class="s2">);</span>
+
+        <span class="s3">// Inicializar la lista de comentarios</span>
+        <span class="s1">commentList </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+
+        <span class="s3">// Configurar el RecyclerView</span>
+        <span class="s1">commentAdapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">CommentAdapter</span><span class="s2">(</span><span class="s1">commentList</span><span class="s2">, </span><span class="s0">this</span><span class="s2">);</span>
+        <span class="s1">recyclerViewComments</span><span class="s2">.</span><span class="s1">setLayoutManager</span><span class="s2">(</span><span class="s0">new </span><span class="s1">LinearLayoutManager</span><span class="s2">(</span><span class="s0">this</span><span class="s2">));</span>
+        <span class="s1">recyclerViewComments</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">commentAdapter</span><span class="s2">);</span>
+
+        <span class="s1">buttonPostComment</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s1">v -&gt; postComment</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">postComment</span><span class="s2">() {</span>
+        <span class="s1">String commentText </span><span class="s2">= </span><span class="s1">editTextComment</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">().</span><span class="s1">trim</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(!</span><span class="s1">commentText</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+            <span class="s1">String username </span><span class="s2">= </span><span class="s4">&quot;Usuario&quot;</span><span class="s2">; </span><span class="s3">// Aquí puedes obtener el nombre de usuario real del usuario autenticado</span>
+            <span class="s1">Comment comment </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Comment</span><span class="s2">(</span><span class="s1">commentText</span><span class="s2">, </span><span class="s1">username</span><span class="s2">);</span>
+            <span class="s1">commentList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">comment</span><span class="s2">);</span>
+            <span class="s1">commentAdapter</span><span class="s2">.</span><span class="s1">notifyItemInserted</span><span class="s2">(</span><span class="s1">commentList</span><span class="s2">.</span><span class="s1">size</span><span class="s2">() - </span><span class="s5">1</span><span class="s2">);</span>
+            <span class="s1">editTextComment</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s4">&quot;&quot;</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;El comentario no puede estar vacío&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onReplyClick</span><span class="s2">(</span><span class="s1">Comment comment</span><span class="s2">) {</span>
+        <span class="s1">showReplyDialog</span><span class="s2">(</span><span class="s1">comment</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">showReplyDialog</span><span class="s2">(</span><span class="s1">Comment parentComment</span><span class="s2">) {</span>
+        <span class="s1">AlertDialog</span><span class="s2">.</span><span class="s1">Builder builder </span><span class="s2">= </span><span class="s0">new </span><span class="s1">AlertDialog</span><span class="s2">.</span><span class="s1">Builder</span><span class="s2">(</span><span class="s0">this</span><span class="s2">);</span>
+        <span class="s1">View view </span><span class="s2">= </span><span class="s1">getLayoutInflater</span><span class="s2">().</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">dialog_reply</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">EditText editTextReply </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">editTextReply</span><span class="s2">);</span>
+        <span class="s1">Button buttonPostReply </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">buttonPostReply</span><span class="s2">);</span>
+
+        <span class="s1">builder</span><span class="s2">.</span><span class="s1">setView</span><span class="s2">(</span><span class="s1">view</span><span class="s2">);</span>
+        <span class="s1">AlertDialog dialog </span><span class="s2">= </span><span class="s1">builder</span><span class="s2">.</span><span class="s1">create</span><span class="s2">();</span>
+
+        <span class="s1">buttonPostReply</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s1">v -&gt; </span><span class="s2">{</span>
+            <span class="s1">String replyText </span><span class="s2">= </span><span class="s1">editTextReply</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">().</span><span class="s1">trim</span><span class="s2">();</span>
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">replyText</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+                <span class="s1">String username </span><span class="s2">= </span><span class="s4">&quot;Usuario&quot;</span><span class="s2">; </span><span class="s3">// Aquí puedes obtener el nombre de usuario real del usuario autenticado</span>
+                <span class="s1">Comment reply </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Comment</span><span class="s2">(</span><span class="s1">replyText</span><span class="s2">, </span><span class="s1">username</span><span class="s2">);</span>
+                <span class="s1">parentComment</span><span class="s2">.</span><span class="s1">addReply</span><span class="s2">(</span><span class="s1">reply</span><span class="s2">);</span>
+                <span class="s1">commentAdapter</span><span class="s2">.</span><span class="s1">notifyDataSetChanged</span><span class="s2">(); </span><span class="s3">// Refrescar el adaptador para mostrar la respuesta</span>
+                <span class="s1">dialog</span><span class="s2">.</span><span class="s1">dismiss</span><span class="s2">();</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;La respuesta no puede estar vacía&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">dialog</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

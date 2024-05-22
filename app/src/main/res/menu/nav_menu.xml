@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_comprar_productos"
+            android:icon="@drawable/ic_shopping_cart"
+            android:title="Comprar Productos" />
+        <item
+            android:id="@+id/nav_consultar_metodos"
+            android:icon="@drawable/ic_plant"
+            android:title="Métodos de Siembra" />
+        <item
+            android:id="@+id/nav_plagas_enfermedades"
+            android:icon="@drawable/ic_bug"
+            android:title="Plagas y Enfermedades" />
+        <item
+            android:id="@+id/nav_foro_chat"
+            android:icon="@drawable/ic_forum"
+            android:title="Foro/Chat" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/setings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/ic_forum"
+            android:title="Registrarse" />
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/setings"
+            android:title="Iniciar Sesión" />
+
+    </group>
+
+</menu>

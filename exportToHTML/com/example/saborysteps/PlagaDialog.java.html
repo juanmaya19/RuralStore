@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>PlagaDialog.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PlagaDialog.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">saborysteps</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AlertDialog</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Context</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">DialogInterface</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">net</span><span class="s2">.</span><span class="s1">Uri</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">PlagaDialog </span><span class="s2">{</span>
+
+    <span class="s0">public static void </span><span class="s1">mostrarEnlace</span><span class="s2">(</span><span class="s0">final </span><span class="s1">Context context</span><span class="s2">, </span><span class="s0">final </span><span class="s1">String enlace</span><span class="s2">) {</span>
+        <span class="s1">AlertDialog</span><span class="s2">.</span><span class="s1">Builder builder </span><span class="s2">= </span><span class="s0">new </span><span class="s1">AlertDialog</span><span class="s2">.</span><span class="s1">Builder</span><span class="s2">(</span><span class="s1">context</span><span class="s2">);</span>
+        <span class="s1">builder</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s3">&quot;Información de la Plaga&quot;</span><span class="s2">);</span>
+        <span class="s1">builder</span><span class="s2">.</span><span class="s1">setMessage</span><span class="s2">(</span><span class="s3">&quot;¿Deseas abrir este enlace en el navegador?&quot;</span><span class="s2">);</span>
+
+        <span class="s1">builder</span><span class="s2">.</span><span class="s1">setPositiveButton</span><span class="s2">(</span><span class="s3">&quot;Sí&quot;</span><span class="s2">, </span><span class="s0">new </span><span class="s1">DialogInterface</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">DialogInterface dialog</span><span class="s2">, </span><span class="s0">int </span><span class="s1">which</span><span class="s2">) {</span>
+                <span class="s1">abrirEnlaceEnNavegador</span><span class="s2">(</span><span class="s1">context</span><span class="s2">, </span><span class="s1">enlace</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">builder</span><span class="s2">.</span><span class="s1">setNegativeButton</span><span class="s2">(</span><span class="s3">&quot;No&quot;</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+
+        <span class="s1">AlertDialog dialog </span><span class="s2">= </span><span class="s1">builder</span><span class="s2">.</span><span class="s1">create</span><span class="s2">();</span>
+        <span class="s1">dialog</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">abrirEnlaceEnNavegador</span><span class="s2">(</span><span class="s1">Context context</span><span class="s2">, </span><span class="s1">String enlace</span><span class="s2">) {</span>
+        <span class="s1">Intent intent </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s1">Intent</span><span class="s2">.</span><span class="s1">ACTION_VIEW</span><span class="s2">, </span><span class="s1">Uri</span><span class="s2">.</span><span class="s1">parse</span><span class="s2">(</span><span class="s1">enlace</span><span class="s2">));</span>
+        <span class="s1">context</span><span class="s2">.</span><span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>
